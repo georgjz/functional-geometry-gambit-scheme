@@ -1,0 +1,4 @@
+[submodule "extern/raylib"]
+	path = extern/raylib
+	url = https://github.com/raysan5/raylib.git
+	branch = master
