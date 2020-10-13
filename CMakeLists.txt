@@ -10,9 +10,6 @@ endif()
 set( CMAKE_C_COMPILER gcc )
 set( CMAKE_CXX_COMPILER g++ )
 
-# Building the Scheme examples is off by default
-option( BUILD_SCM_EXAMPLES "Build the Scheme code examples with Gambit Scheme." OFF )
-
 # Give the project a name
 project( functional-geometry-fish
     VERSION 0.1.0

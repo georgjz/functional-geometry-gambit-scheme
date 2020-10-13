@@ -2,16 +2,18 @@
 
 ; (include "raylibbinding/raylib.scm")
 
-;;; Some game constants 
-(define screen-width 800)
-(define screen-height 600)
+;;; Some constants 
+(define SCREEN-WIDTH 800)
+(define SCREEN-HEIGHT 600)
+(define BLACK '(0 0 0 255))
+(define WHITE '(255 255 255 255))
 
 ;;; Initialize the game
 (define init-game 
   (lambda ()
     (begin
-     (init-window screen-width 
-                  screen-height
+     (init-window SCREEN-WIDTH 
+                  SCREEN-HEIGHT
                   "Functional Geometry with Gambit Scheme")
      (set-target-fps 60)
     )))
@@ -20,7 +22,11 @@
   (lambda () 
     (if (not (window-should-close))
         (begin (begin-drawing)
-               (clear-background '(100 200 90 255))
+               (clear-background WHITE)
+               (draw-line-ex '(0.0 0.0)
+                             '(800.0 600.0)
+                             4.0
+                             BLACK)
                (end-drawing)
                (main-loop))
         (begin 
