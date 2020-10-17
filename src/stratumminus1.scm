@@ -172,6 +172,7 @@ c-declare-end
 
 c-declare-end
 )
+
 ;;; These three functions simplify managing the OpenGL render context
 ;; void InitWindow(int width, int height, const char *title);
 (define init-window 
