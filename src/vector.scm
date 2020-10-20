@@ -3,13 +3,13 @@
   (lambda (a b)
     (map + a b)))
 
-(define -vec 
-  (lambda (a b) 
-    (map - a b)))
-
 (define *vec 
   (lambda (vec s) 
     (map (lambda (x) (* x s)) vec)))
+
+(define -vec 
+  (lambda (a b)
+    (+vec a (*vec b -1.0))))
 
 (define *dot 
   (lambda (a b)
