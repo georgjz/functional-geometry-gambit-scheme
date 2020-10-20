@@ -1,6 +1,3 @@
-;;; Test the function(s) from factorial.scm
-; (include "../src/stratumminus1.scm")
-
 (import (_test))
 
 (test-all?-set! #t)
@@ -10,15 +7,15 @@
   (test-assert 
    "Add two vectors, float" 
    (equal? (+vec '(1.0 2.0) '(3.0 4.0))
-           '((+ 1.0 3.0) (+ 2.0 4.0))))
+           (list (+ 1.0 3.0) (+ 2.0 4.0))))
   (test-assert 
    "Subtract two vectors, float" 
    (equal? (-vec '(1.0 2.0) '(3.0 4.0))
-           '((- 1.0 3.0) (- 2.0 4.0))))
+           (list (- 1.0 3.0) (- 2.0 4.0))))
   (test-assert 
    "Multiply vector with float" 
    (equal? (*vec '(1.0 2.0) 2.5)
-           '((* 1.0 2.5) (* 5.0 2.5))))
+           (list (* 1.0 2.5) (* 2.0 2.5))))
   (test-assert 
    "Calculate vector dot product" 
    (equal? (*dot '(1.0 2.0) '(2.0 3.0))
