@@ -9,6 +9,10 @@
    (equal? (+vec '(1.0 2.0) '(3.0 4.0))
            (list (+ 1.0 3.0) (+ 2.0 4.0))))
   (test-assert 
+   "Add three vectors" 
+   (equal? (+vec '(1.0 2.0) '(3.0 4.0) '(5.0 6.0))
+           (list (+ 1.0 3.0 5.0) (+ 2.0 4.0 6.0))))
+  (test-assert 
    "Subtract two vectors" 
    (equal? (-vec '(1.0 2.0) '(3.0 4.0))
            (list (- 1.0 3.0) (- 2.0 4.0))))
