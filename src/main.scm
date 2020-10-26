@@ -48,6 +48,7 @@
                (clear-background WHITE)
                ; draw the triangles 
                (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+               (render ((rot45 triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
                (end-drawing)
                (main-loop))
         (begin 

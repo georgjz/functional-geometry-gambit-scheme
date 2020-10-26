@@ -41,4 +41,19 @@
          (p1 (list right-offset horiz vert))
          (p2 (list left-offset horiz vert)))))))
 
-(define rot45 #f)
+(define rot45
+  (lambda (picture)
+    (lambda (box)
+      (letrec ((offset (car box))
+               (horiz (*vec (-vec (cadr box) (caddr box))
+                            0.5))
+               (vert (*vec (+vec (cadr box) (caddr box))
+                     0.5)))
+         (picture (list offset horiz vert))))))
+
+(define over 
+  (lambda (p1 p2)
+    (lambda (box)
+      (append
+       (p1 box))
+       (p2 box))))
