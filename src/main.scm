@@ -8,7 +8,7 @@
 (define BLACK '(0 0 0 255))
 (define WHITE '(255 255 255 255))
 
-;;; Define actually data to draw
+;;; Define actual data to draw
 (define triangle (primitive-picture '((0.85 0.15)
                                       (0.85 0.85)
                                       (0.15 0.85)
@@ -23,6 +23,11 @@
                   "Functional Geometry with Gambit Scheme")
      (set-target-fps 60)
     )))
+
+;;; This is the render function
+(define render 
+  (lambda (ll)
+    (map render* ll)))
 
 ;;; This function takes a list of lines and draws it onto the context 
 (define render* 
@@ -41,8 +46,8 @@
     (if (not (window-should-close))
         (begin (begin-drawing)
                (clear-background WHITE)
-               ; draw the triangle 
-               (render* (triangle '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+               ; draw the triangles 
+               (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
                (end-drawing)
                (main-loop))
         (begin 

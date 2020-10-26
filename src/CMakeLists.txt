@@ -5,5 +5,6 @@ target_sources( ${PROJECT_NAME}
         vector.scm
         raylib.scm
         picture.scm
+        primitives.scm
         main.scm 
 )
