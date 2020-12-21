@@ -5,8 +5,8 @@
   (lambda (picture)
     (lambda (box)
       (let ((offset (+vec (car box) (caddr box)))
-            (horiz (cadr box))
-            (vert (*vec (caddr box) -1.0)))
+            (horiz (*vec (caddr box) -1.0))
+            (vert (cadr box)))
         (picture (list offset horiz vert))))))
 
 (define flip
@@ -55,5 +55,5 @@
   (lambda (p1 p2)
     (lambda (box)
       (append
-       (p1 box))
-       (p2 box))))
+       (p1 box)
+       (p2 box)))))

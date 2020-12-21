@@ -9,7 +9,7 @@
         (list (map (lambda (shape) (mapper box shape))
              shapes))))))
 
-;;; A empty picture
+;;; An empty picture
 (define blank (primitive-picture '()))
 
 ;;; This functions applies a box to a vector

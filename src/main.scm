@@ -1,6 +1,4 @@
-;;; Simple example of using raylib in Scheme
-
-; (include "raylibbinding/raylib.scm")
+;;; Simple example of using the picture language in Gambit Scheme
 
 ;;; Some constants 
 (define SCREEN-WIDTH 600)
@@ -33,7 +31,9 @@
 (define render* 
   (lambda (los)
     (cond 
-      ((null? (cdr los)) '())
+      ((or (null? los) 
+           (null? (cdr los)))
+       '())
       (else 
        (begin (draw-line-ex (car los)
                             (cadr los)
@@ -47,8 +47,11 @@
         (begin (begin-drawing)
                (clear-background WHITE)
                ; draw the triangles 
-               (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
-               (render ((rot45 triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+              ;  (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+              ;  (render ((beside triangle blank) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+              ;  (render ((rec-figure triangle 5) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+              ;  (render (triangle '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+               (render ((over triangle (rot (rot triangle))) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
                (end-drawing)
                (main-loop))
         (begin 
@@ -56,4 +59,3 @@
 
 (init-game)
 (main-loop)
-

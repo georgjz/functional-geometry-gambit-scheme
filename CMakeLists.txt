@@ -1,11 +1,5 @@
-cmake_minimum_required( VERSION 3.10...3.18 )
+cmake_minimum_required( VERSION 3.13 FATAL_ERROR )
 
-if( ${CMAKE_VERSION} VERSION_LESS 3.12 )
-    cmake_policy( VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} )
-endif()
-
-# TODO: Add functionality to automatically detect compilers for cross-platform
-#       support.
 # Set compilers
 set( CMAKE_C_COMPILER gcc )
 set( CMAKE_CXX_COMPILER g++ )
