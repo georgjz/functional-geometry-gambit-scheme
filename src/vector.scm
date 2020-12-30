@@ -1,4 +1,5 @@
 ;;; Vector help functions 
+
 (define +vec 
   (lambda (a b)
     (map + a b)))

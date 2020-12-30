@@ -2,7 +2,9 @@
 
 This repository contains a simple implementation of a stratified picture language written in Scheme. It is heavily inspired by the papers [Functional Geometry][funcgem] by Peter Henderson, and [Lisp: A Language for Stratified Design][lisp] by Harold Abelson and Gerald Jay Sussman. A more expansive discussion of these ideas can be found in [chapter 2.2.4 of SICP][sicp].
 
-The code uses [raylib][1] to abstract away context creation and rendering onto a context to focus on the geometry language itself. [Gambit Scheme][2] is used as a compiler, it can also be used for experimenting in a REPL. Consider everything in this repository experimental.
+The code uses [raylib][1] to abstract away context creation and rendering onto a context to focus on the geometry language itself. [Gambit Scheme][2] is used as a compiler. Consider everything in this repository experimental.
+
+Consider this code to be "the busy work already done", so that you can experiment with the picture language at your leisure.
 
 ## Usage
 
@@ -44,15 +46,17 @@ Because I'm using Arch Linux, there's a bit of a naming conflict when installing
 2. If you build Gambit Scheme from source, use the `--enable-interpreter-name` and `--enable-compiler-name` options during the configuration step to rename `gsc` into `gambitc`.
 3. `$ alias gambitc=gsc`
 
-It's a bit annoying, but this will be fixed when I improve the CMake language definition.
+It's a bit annoying right now, but this will be fixed when I improve the CMake language definition.
 
 ## Comments on the Code Structure
 
-This code tries to follow the ideas presented in [Lisp: A Language for Stratified Design][lisp]. For that purpose, I'm going to describe the layers used in this repository and my reasoning behind my design decisions. I do not claim that this is the best way to execute layered or stratified design, this is just my attempt at it with code written from scratch. The layers/strata are presented from buttom to top.
+This code tries to follow the ideas presented in [Lisp: A Language for Stratified Design][lisp]. For that purpose, I'm going to describe the layers used in this repository and my reasoning behind my design decisions. I do not claim that this is the best way to execute layered/stratified design, this is just my attempt at it with code written from scratch. The layers/strata are presented from buttom to top.
+
+The ultimate goal is to provide a picture language based on simple procedures that operate under closure over pictures. That is, every procedure takes (a) picture(s), and returns a picture. This allows to you build complex pictures from a handful of simple manipulators and combinators, and lets you define your own easily.
 
 ### Stratum -1: `src/raylib.scm` and `src/vector.scm`
 
-I name this stratum "-1" because these procedures aren't strictly part of the picture language in my understanding. The procedures in `src/raylib.scm` bind Scheme procedures to their raylib counterparts. For the most part, they take care of creating and destroying a OpenGL context with GLFW for the code to render onto. Some simple rendering procedures are bound too. Keep in mind that I only bind a very small handful of procedures found in [raylib][1], check the documentation for a full list. It may be useful to bind additional raylib prodecures for your own experiments.
+I name this stratum "-1" because these procedures aren't strictly part of the picture language in my understanding. The procedures in `src/raylib.scm` bind Scheme procedures to their raylib counterparts. For the most part, they take care of creating and destroying an OpenGL context with GLFW for the code to render onto. Some simple rendering procedures are bound too. Keep in mind that I only bind a very small handful of procedures found in [raylib][1], check the documentation for a full list. It may be useful to bind additional raylib prodecures for your own experiments.
 
 `src/vector.scm` contains a few simple procedures for 2D vector arithmetics. I debated myself if this procedures should rather be in stratum 0, but I reasoned that procedures of one stratum should (ideally) rely exclusively on procedures provided by the stratum directly below it (as you'll see, I wasn't always able to adher to this rule). A proper list of (at least) two floating-point numbers is considered a vector in this code.
 
@@ -61,6 +65,14 @@ I name this stratum "-1" because these procedures aren't strictly part of the pi
 (define vec2 (list 6.1 3.33))   ; valid vector
 (define vec3 '(4.5 . 7.6))      ; invalid vector, improper list
 (define vec4 '(8.1 6.9 5.2))    ; while invalid in a logical sense, would still work with this code
+```
+
+I considered adding helper procedures for boxes, but decided against it for brevity. If you wish to add them, it's trivial to do:
+
+```Scheme
+(define offset (lambda (box) (car box)))
+(define horiz (lambda (box) (cadr box)))
+(define vert (lambda (box) (caddr box)))
 ```
 
 ### Stratum 0: `src/picture.scm`
@@ -128,9 +140,15 @@ These procedures take one or more pictures as argument and return a transformed 
 
 ![over_triangle](screenshots/over_triangle.png)
 
-**Caveat**: When reading the code in `src/primitives.scm` and comparing it to [Functional Geometry][funcgem], keep in mind that in Peter Henderson's paper, the origin of the coordinate system is in the *lower left corner*, while most computer graphic libraries (including raylib) put the origin at the *upper left corner*. This result in slightly different implementations. But the base idea of manipulating the vectors of a enclosing box to transform pictures remains the same.
+**Caveat**: When reading the code in `src/primitives.scm` and comparing it to [Functional Geometry][funcgem], keep in mind that in Peter Henderson's paper, the origin of the coordinate system is in the *lower left corner*, while most computer graphic libraries (including raylib) put the origin at the *upper left corner*. This result in slightly different implementations (i.e., some of the vectors are calculated differently). But the base idea of manipulating the vectors of a enclosing box to transform pictures remains the same.
 
 ![Result of example code](screenshot.png)
+
+### Stratum 2: `src/combinators.scm`
+
+This is the real meat of the code. The procedures in this file are probably your best starting point for your own experiments. They all are built on top of the procedures bound in `src/primitives.scm` to build complexity step by step.
+
+Read [Functional Geometry][funcgeo]. No, seriously.
 
 ## Known Bugs and Future Features
 

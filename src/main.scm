@@ -47,11 +47,7 @@
         (begin (begin-drawing)
                (clear-background WHITE)
                ; draw the triangles 
-              ;  (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
-              ;  (render ((beside triangle blank) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
-              ;  (render ((rec-figure triangle 5) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
-              ;  (render (triangle '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
-               (render ((over triangle (rot (rot triangle))) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+               (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
                (end-drawing)
                (main-loop))
         (begin 

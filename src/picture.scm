@@ -7,12 +7,13 @@
     (let ((shapes los))
       (lambda (box)
         (list (map (lambda (shape) (mapper box shape))
-             shapes))))))
+                   shapes))))))
 
 ;;; An empty picture
 (define blank (primitive-picture '()))
 
-;;; This functions applies a box to a vector
+;;; This functions applies a box to a vector. Should be hidden in 
+;;; primitive-picture
 (define mapper 
   (lambda (box vec)
     (let ((offset (car box))

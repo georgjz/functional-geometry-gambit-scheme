@@ -3,7 +3,16 @@
 
 (define quartet 
   (lambda (p q r s)
-    (above (beside p q) (beside r s))))
+    (above (beside p q) 
+           (beside r s))))
+
+(define cycle 
+  (lambda (p)
+    (quartet p 
+             (rot p)
+             (rot (rot p))
+             (rot (rot (rot p))))))
+
 
 (define rec-figure 
   (lambda (picture depth)
