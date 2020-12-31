@@ -39,6 +39,20 @@
          (p1 (list upper-offset horiz vert))
          (p2 (list lower-offset horiz vert)))))))
 
+(define above-ratioed
+  (lambda (m n p1 p2)
+    (lambda (box)
+      (let* ((total (+ m n))
+             (upper-offset (car box))
+             (lower-offset (+vec upper-offset
+                                 (*vec (caddr box) (/ m total))))
+             (horiz (cadr box))
+             (vertm (*vec (caddr box) (/ m total)))
+             (vertn (*vec (caddr box) (/ n total))))
+        (append
+         (p1 (list upper-offset horiz vertm))
+         (p2 (list lower-offset horiz vertn)))))))
+
 (define beside
   (lambda (p1 p2)
     (lambda (box)
@@ -50,6 +64,20 @@
         (append
          (p1 (list right-offset horiz vert))
          (p2 (list left-offset horiz vert)))))))
+
+(define beside-ratioed
+  (lambda (m n p1 p2)
+    (lambda (box)
+      (let* ((total (+ m n))
+             (right-offset (car box))
+             (left-offset (+vec right-offset
+                                (*vec (cadr box) (/ m total))))
+             (horizm (*vec (cadr box) (/ m total)))
+             (horizn (*vec (cadr box) (/ n total)))
+             (vert (caddr box)))
+        (append
+         (p1 (list right-offset horizm vert))
+         (p2 (list left-offset horizn vert)))))))
 
 (define rot45
   (lambda (picture)
