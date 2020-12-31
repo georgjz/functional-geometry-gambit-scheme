@@ -7,5 +7,6 @@ target_sources( ${PROJECT_NAME}
         picture.scm
         primitives.scm
         combinators.scm
+        fish.scm
         main.scm 
 )

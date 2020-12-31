@@ -1,6 +1,10 @@
 ;;;;;; These combinators use the primitive picture manipulators to create more
 ;;;;;; complex images.
 
+(define flip-vertical 
+  (lambda (p)
+    (flip (rot (rot p)))))
+
 (define quartet 
   (lambda (p q r s)
     (above (beside p q) 

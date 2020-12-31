@@ -10,8 +10,19 @@
 (define triangle (primitive-picture '((0.85 0.15)
                                       (0.85 0.85)
                                       (0.15 0.85)
+                                      (0.15 0.15)
                                       (0.85 0.15))))
 
+;;; Define the main box 
+(define main-box '((100.0 100.0)
+                   (400.0 0.0)
+                   (0.0 400.0)))
+
+;;; Useful for test
+(define unity-box '((0.0 0.0)
+                    (1.0 0.0)
+                    (0.0 1.0)))
+                   
 ;;; Initialize the game
 (define init-game 
   (lambda ()
@@ -47,7 +58,9 @@
         (begin (begin-drawing)
                (clear-background WHITE)
                ; draw the triangles 
-               (render ((above (beside triangle triangle) triangle) '((0.0 0.0) (600.0 0.0) (0.0 600.0))))
+              ;  (render ((beside blank outline-left) main-box))
+              ;  (render (outline-left main-box))
+               (render (fish main-box))
                (end-drawing)
                (main-loop))
         (begin 

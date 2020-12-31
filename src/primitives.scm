@@ -5,16 +5,26 @@
   (lambda (picture)
     (lambda (box)
       (let ((offset (+vec (car box) (caddr box)))
-            (vert (cadr box)))
             (horiz (*vec (caddr box) -1.0))
+            (vert (cadr box)))
+        (picture (list offset horiz vert))))))
+
+(define rot-corner 
+  (lambda (picture)
+    (lambda (box)
+      (let ((offset (+vec (car box) 
+                          (+vec (*vec (cadr box) -1.0)
+                                (caddr box))))
+            (horiz (*vec (caddr box) -1.0))
+            (vert (cadr box)))
         (picture (list offset horiz vert))))))
 
 (define flip
   (lambda (picture)
     (lambda (box)
       (let ((offset (+vec (car box) (cadr box)))
-            (vert (*vec (cadr box) -1.0))
-            (horiz (caddr box)))
+            (horiz (*vec (cadr box) -1.0))
+            (vert (caddr box)))
         (picture (list offset horiz vert))))))
 
 (define above
