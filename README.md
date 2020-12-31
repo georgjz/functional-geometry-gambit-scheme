@@ -140,7 +140,7 @@ These procedures take one or more pictures as argument and return a transformed 
 
 ![over_triangle](screenshots/over_triangle.png)
 
-**Caveat**: When reading the code in `src/primitives.scm` and comparing it to [Functional Geometry][funcgeo], keep in mind that in Peter Henderson's paper, the origin of the coordinate system is in the *lower left corner*, while most computer graphic libraries (including raylib) put the origin at the *upper left corner*. This result in slightly different implementations (i.e., some of the vectors are calculated differently). But the base idea of manipulating the vectors of a enclosing box to transform pictures remains the same.
+**Caveat**: When reading the code in `src/primitives.scm` and comparing it to [Functional Geometry][funcgeo], keep in mind that in Peter Henderson's paper, the origin of the coordinate system is in the *lower left corner*, while most computer graphic libraries (including raylib) put the origin at the *upper left corner*. This results in slightly different implementations (i.e., some of the vectors are calculated differently). But the base idea of manipulating the vectors of a enclosing box to transform pictures remains the same.
 
 ### Stratum 2: `src/combinators.scm`
 
