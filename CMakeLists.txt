@@ -1,8 +1,8 @@
 cmake_minimum_required( VERSION 3.13 FATAL_ERROR )
 
 # Set compilers
-set( CMAKE_C_COMPILER gcc )
-set( CMAKE_CXX_COMPILER g++ )
+set( CMAKE_C_COMPILER clang )
+set( CMAKE_CXX_COMPILER clang++ )
 
 # Give the project a name
 project( functional-geometry-fish
