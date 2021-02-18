@@ -2,7 +2,7 @@
 
 This repository contains a simple implementation of a stratified picture language written in Scheme. It is heavily inspired by the papers [Functional Geometry][funcgeo] by Peter Henderson, and [Lisp: A Language for Stratified Design][lisp] by Harold Abelson and Gerald Jay Sussman. A more expansive discussion of these ideas can be found in [chapter 2.2.4 of SICP][sicp].
 
-The code uses [raylib][1] to abstract away context creation and rendering onto a context to focus on the geometry language itself. [Gambit Scheme][2] is used as a compiler. Consider everything in this repository experimental *ready to break/explode at any moment*.
+The code uses [raylib][1] to abstract away context creation and rendering onto a context to focus on the geometry language itself. [Gambit Scheme][2] is used as a compiler. Consider everything in this repository experimental( aka, *ready to break/explode at any moment*).
 
 Consider this code to be "the busy work already done", so that you can experiment with the picture language at your leisure.
 
@@ -12,7 +12,7 @@ This repository is purposefully kept very basic and simple. It is meant to be a 
 
 ### Building
 
-This repository comes with raylib already integrated as a git submodule. This reflects my personal preferences, if you prefer to use CMake's `FetchPackage`, it should be easy enough to modify the main `CMakeLists.txt` to do that (I haven't tested it, tough).
+This repository comes with raylib already integrated as a git submodule. This reflects my personal preferences, if you prefer to use CMake's `FetchPackage`, it should be easy enough to modify the main `CMakeLists.txt` to do that (I haven't tested it, though).
 
 It comes with a simply CMake-based language configuration for Gambit Scheme. These are the tools you need to use the code in this repository:
 
@@ -140,7 +140,7 @@ These procedures take one or more pictures as argument and return a transformed 
 
 ![over_triangle](screenshots/over_triangle.png)
 
-**Caveat**: When reading the code in `src/primitives.scm` and comparing it to [Functional Geometry][funcgeo], keep in mind that in Peter Henderson's paper, the origin of the coordinate system is in the *lower left corner*, while most computer graphic libraries (including raylib) put the origin at the *upper left corner*. This results in slightly different implementations (i.e., some of the vectors are calculated differently). But the base idea of manipulating the vectors of an enclosing box to transform pictures remains the same.
+**Caveat**: When reading the code in `src/primitives.scm` and comparing it to [Functional Geometry][funcgeo], keep in mind that in Peter Henderson's paper, the origin of the coordinate system is in the *lower left corner*, while most computer graphic libraries (including raylib) put the origin at the *upper left corner*. This results in slightly different implementations (i.e., some of the vectors are calculated differently). But the basic idea of manipulating the vectors of an enclosing box to transform pictures remains the same.
 
 ### Stratum 2: `src/combinators.scm`
 
@@ -179,7 +179,7 @@ Read. The. [Paper][funcgeo].
 Here's a few links with related material that might be helpful:
 
 * The paper [Functional Geometry][funcgeo] by Peter Henderson
-* An implementation based on Henderson's ideas found in [Structure and Interprtation of Computer Programs][sicp]
+* An implementation based on Henderson's ideas found in [Structure and Interpretation of Computer Programs][sicp]
 * A [Jupyter notebook](http://shashi.biz/ijulia-notebooks/funcgeo/) implementing square-limit in Julia
 * Another [LISP implementation](https://frank-buss.de/lisp/functional.html) by Frank Buß
   * A [JavaScript/HTML port](https://github.com/alunny/functional-geometry-canvas) of Frank Buß' implementation
